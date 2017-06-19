@@ -1,0 +1,16 @@
+extends ../templates/default
+block content
+  
+  div(class='row')
+    div(class='col-md-3 col-md-offset-1')
+      div(class='panel panel-default')
+        div(class='panel-body')
+          h1 PlayerMusic
+          audio(controls='')
+            source(type='audio/mpeg')
+    div(class='col-md-7 col-md-offset-0')
+        p Lista de todas las canciones 
+        div(class='list-group')
+
+
+  script(src='javascripts/main.js')
