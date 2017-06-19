@@ -4,7 +4,19 @@ console.log('estoy en el browser');
 $(function(){
 
 	var audio=$('audio');
+	var button=document.getElementById('btnlista');
 	var ur = 'player/canciones/all';
+
+	function escuchasBotones(){
+		button.addEventListener("click",function(){
+			console.log(ur);
+			ur = 'player/canciones/pruebaBoton';
+			console.log(ur);
+			cargarCanciones();
+		},false);
+
+
+	}
 
 	function cargarCanciones(){
 		$.ajax({
@@ -35,11 +47,9 @@ $(function(){
 
 	}
 
-	function setUrl(){
-
-	}
 
 
+	escuchasBotones();
 	cargarCanciones();
-	
+
 });
