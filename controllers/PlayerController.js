@@ -9,6 +9,13 @@ module.exports = {
             user : req.user})
 	},
 
+    getMisListas : function(req,res,next){
+		res.render('player/misListas',{
+            isAuthenticated : req.isAuthenticated(),
+            user : req.user
+		})
+	},
+
 
 	player2 : function(req,res,next){
 		var media = require('.././music/mediaserver');
@@ -28,6 +35,7 @@ module.exports = {
 		var pool = require('.././database/config');
 		var tipo =req.params.tipo;
 		console.log(tipo);
+		console.log(req.user);
 		switch(tipo){
 			case "all":
 				pool.query('SELECT * FROM cancion ORDER BY id_cancion ',
@@ -47,16 +55,25 @@ module.exports = {
 				break;
 
 			case "listaUsuario":
-				console.log(req.email);
-				pool.query('SELECT * FROM todas_las_listas WHERE nombre_usuario = $1',[req.email],
+				console.log(req.user.email);
+				pool.query('SELECT * FROM todas_las_listas WHERE nombre_usuario = $1',[req.user.email],
 					function(err,result)
 					{
 						if (err) throw err;
 						res.send({canciones :result.rows,tp : tipo});
 					})
-				break;	
+				break;
+            case "pruebaBoton":
+                console.log(req.email);
+                pool.query('SELECT * FROM cancion LIMIT 10',
+                    function(err,result)
+                    {
+                        if (err) throw err;
+                        res.send({canciones :result.rows,tp : tipo});
+                    })
+                break;
 
-			}
+        }
 
 		
 	},

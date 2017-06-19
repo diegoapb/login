@@ -33,7 +33,9 @@ router.get('/player/playpr',function(req,res,next){
 	});
 
 router.get('/player/canciones/:tipo',controllers.PlayerController.getCanciones);
-router.get('/player/:ruta',controllers.PlayerController.canNombre);
+//router.get('/player/:ruta',controllers.PlayerController.canNombre);
+
+router.get('/player/mislistas',controllers.PlayerController.getMisListas);
 
 
 module.exports = router;

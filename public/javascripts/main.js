@@ -17,7 +17,7 @@ $(function(){
 
 
 	}
-
+ 
 	function cargarCanciones(){
 		$.ajax({
 			url: ur

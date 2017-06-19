@@ -1,0 +1,9 @@
+//
+   Created by diego on 19/06/17
+
+extends ../templates/default
+
+block content
+  h Esta es la pagia de mis listas
+  if isAuthenticated
+    p='Hola...' + user.nombre
