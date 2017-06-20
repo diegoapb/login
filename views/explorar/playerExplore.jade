@@ -1,0 +1,34 @@
+//
+   Created by diego on 20/06/17.
+extends ../templates/default
+block content
+  p Player Exlore
+
+  div(class='row')
+    div(class='col-md-3 col-md-offset-1')
+      div(class='panel panel-default')
+        div(class='panel-body')
+          h1 PlayerMusicExplore
+          audio(controls='')
+            source(type='audio/mpeg')
+    div(class='col-md-7 col-md-offset-0')
+      p Lista de todas las canciones
+
+      table.table.table-hover
+        thead
+        tr
+          th Nombre
+          th Duracion
+          th Arista
+          th Genero
+          th Lista
+        tbody
+          each cancion in canciones
+            tr(onclick='probandoEscucha()')
+              td=cancion.nombre_cancion
+              td=cancion.duracion
+              td=cancion.nombre_artista
+              td=cancion.nombre_genero
+              td cdcd
+  script(src="/javascripts/play.js")
+
