@@ -10,13 +10,13 @@ $(function(){
 	function escuchasBotones(){
 		button.addEventListener("click",function(){
 			console.log(ur);
-			ur = 'player/canciones/pruebaBoton';
+			ur = 'player/canciones/listaUsuario';
 			console.log(ur);
 			cargarCanciones();
 		},false);
-
-
 	}
+
+
  
 	function cargarCanciones(){
 		$.ajax({

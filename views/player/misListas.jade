@@ -4,6 +4,34 @@
 extends ../templates/default
 
 block content
-  h Esta es la pagia de mis listas
-  if isAuthenticated
-    p='Hola...' + user.nombre
+  div(class='row')
+    div(class='col-md-3 col-md-offset-1')
+      div(class='panel panel-default')
+        div(class='panel-body')
+          h1 PlayerMusic
+          audio(controls='')
+            source(type='audio/mpeg')
+    div(class='col-md-7 col-md-offset-0')
+      p tabla con la informacion de las listas
+      a.btn.btn-primary(href='#' type='button' ) crear nueva lista
+      table.table.table-hover
+        thead
+          tr
+            th Nombre
+            th Likes
+            th Acciones
+        tbody
+          each list in listas
+            tr
+              td=list.nombre_lista
+              td=list.likes
+              td
+                a(href='#') editar
+                =' - '
+                a(href='#') eliminar
+
+
+
+
+
+  script(src='javascripts/main.js')

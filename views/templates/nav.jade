@@ -11,9 +11,12 @@ nav(class="navbar navbar-inverse")
     div(class="collapse navbar-collapse" id="bs-example-navbar-collapse-1")
       ul(class="nav navbar-nav navbar-lefth")
         li
-          a(href="http://localhost:3000/player")= 'Reproductor'
+          a(href="http://localhost:3000/player")= 'Mi Musica'
+        li
+          a(href="http://localhost:3000/explorar") Explorar
         li
           a(href="")= 'Contacto'
+
       ul(class="nav navbar-nav navbar-right")
         if !isAuthenticated
           li

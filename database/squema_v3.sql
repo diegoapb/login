@@ -99,7 +99,33 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER inserta_lista4 BEFORE INSERT
 ON lista FOR EACH ROW EXECUTE PROCEDURE f_createLista();
 
-CREATE VIEW [Current Product List] AS
-SELECT ProductID, ProductName
-FROM Products
-WHERE Discontinued = No;
+CREATE VIEW Todas_listas AS
+SELECT *
+FROM lista;
+
+CREATE OR REPLACE VIEW Todas_listas AS
+SELECT id_lista,nombre_lista,likes,nombre_usuario
+FROM lista INNER JOIN usuario
+ON lista.fk_id_usuario = usuario.id_usuario;
+
+CREATE OR REPLACE VIEW Todas_canciones_listas AS
+SELECT id_cancion,nombre_cancion,duracion,nombre_lista,likes,nombre_usuario
+FROM lista INNER JOIN usuario
+ON lista.fk_id_usuario = usuario.id_usuario
+INNER JOIN cancion_lista
+ON lista.id_lista = cancion_lista.fk_id_lista
+INNER JOIN cancion
+ON cancion_lista.fk_id_cancion = cancion.id_cancion;
+
+CREATE OR REPLACE VIEW Todas_canciones_info_listas AS
+SELECT id_cancion,nombre_cancion,duracion,nombre_lista,nombre_usuario
+FROM lista INNER JOIN usuario
+ON lista.fk_id_usuario = usuario.id_usuario
+INNER JOIN cancion_lista
+ON lista.id_lista = cancion_lista.fk_id_lista
+INNER JOIN cancion
+ON cancion_lista.fk_id_cancion = cancion.id_cancion
+INNER JOIN artista
+ON artista.id_artista=cancion.fk_id_artista
+INNER JOIN genero
+ON cancion.fk_id_genero = genero.id_genero;

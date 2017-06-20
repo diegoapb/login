@@ -1,5 +1,17 @@
 extends ../templates/default
 
 block content
-  if isAuthenticated
-    p='Hola...' + user.nombre
+    .container
+      h2 Perfil
+      p Username
+      .well=user.email
+      p Nombre
+      .well=user.nombre
+
+      a.btn.btn-primary.btn-lg(href='#' type='button') Editar
+
+
+
+
+
+

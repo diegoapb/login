@@ -24,6 +24,7 @@ router.post('/auth/signin', passport.authenticate('local',{
 	failureRedirect :'/auth/signin',
 	failureFlash : true
 }));
+router.get('/explorar',controllers.exploreController.explore);
 router.get('/auth/logout',controllers.UserController.logout);
 router.get('/users/panel',authMiddleware.isLogged,controllers.UserController.getUserPanel);
 router.get('/player',controllers.PlayerController.player);

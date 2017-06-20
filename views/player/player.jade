@@ -10,10 +10,39 @@ block content
             source(type='audio/mpeg')
       div(class = 'container')
         h2 button Styles
-        a(class='btn btn-primary' href='' type='button' id='btnlista') change list
-        button(class='btn btn-primary' type='button' id='btn2lista') mis listas
+        //a(class='btn btn-primary' href='' type='button' id='btn2lista') mi lista
+        //button(class='btn btn-primary' type='button' id='btnlista') change list
+        .btn-group-vertical
+          button.btn.btn-primary(type='button' id='btnlista') btnlista
+          button.btn.btn-primary(type='button' id='btn2lista') btn2
+          button.btn.btn-primary(type='button' id='otherbutton') other
+          a.btn.btn-primary(href='http://localhost:3000/player/misListas' type='button' ) ir a mis listas
+          .btn-group
+            button.btn.btn-primary.dropdown-toggle(type='button', data-toggle='dropdown')
+              | listas
+              span.caret
+            ul.dropdown-menu(role='menu')
+              li
+                a(href='#') lista1
+              li
+                a(href='#') lista2
+
+
+
     div(class='col-md-7 col-md-offset-0')
-        p Lista de todas las canciones 
-        div(class='list-group')
+        p Lista de todas las canciones
+
+        table.table.table-hover
+          thead
+          tr
+            th Nombre
+            th Duracion
+            th Arista
+          tbody
+          tr
+            td John
+            td Doe
+            td john@example.com
+
 
   script(src='javascripts/main.js')
