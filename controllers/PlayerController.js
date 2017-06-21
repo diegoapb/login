@@ -3,11 +3,17 @@ var path =require('path');
 
 module.exports = {
 
-	player : function(req,res,next){
-		res.render('player/player',{
-            isAuthenticated : req.isAuthenticated(),
-            user : req.user})
-	},
+	player : function(req,res,next) {
+        if (req.isAuthenticated()) {
+            res.render('player/player', {
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user
+            })
+        } else {
+            res.redirect('/auth/signin')
+        }
+    }
+	,
 
     getMisListas : function(req,res,next){
 		console.log(req.isAuthenticated());
@@ -15,7 +21,7 @@ module.exports = {
             var pool = require('.././database/config');
             console.log(req.user.email);
             var datos;
-            pool.query('SELECT * FROM Todas_listas WHERE nombre_usuario = $1', [req.user.email],
+            pool.query('SELECT * FROM Todas_listas WHERE nombre_usuario = $1 ORDER BY id_lista', [req.user.email],
                 function (err, result) {
                     if (err) throw err;
                     console.log(datos);
@@ -27,6 +33,17 @@ module.exports = {
                 })
 
         }else{res.redirect('/auth/signin')}
+	},
+
+	deleteLista : function (req,res,next){
+        var pool = require('.././database/config');
+        pool.query('DELETE FROM lista WHERE id_lista= $1',
+			[req.params.id_lista],
+            function(err,result)
+            {
+                if (err) throw err;
+                res.redirect('/player/mislistas');
+            })
 	},
 
 
@@ -51,31 +68,42 @@ module.exports = {
 		console.log(req.user);
 		switch(tipo){
 			case "all":
-				pool.query('SELECT * FROM cancion ORDER BY id_cancion ',
+				pool.query('SELECT * FROM todas_canciones_info_listas WHERE nombre_usuario = $1 ORDER BY nombre_lista,nombre_cancion',
+					[req.user.email],
 					function(err,result)
 				{
 					if (err) throw err;
 					res.send({canciones :result.rows,tp : tipo});
 			})
 				break;
-			case "listasycanciones":
-				pool.query('SELECT * FROM todas_las_listas ',
-					function(err,result)
-					{
-						if (err) throw err;
-						res.send({canciones :result.rows,tp : tipo});
-					})
-				break;
 
-			case "listaUsuario":
+			case "lista1":
 				console.log(req.user.email);
-				pool.query('SELECT * FROM Todas_canciones_listas WHERE nombre_usuario = $1',[req.user.email],
+				pool.query('SELECT * FROM Todas_canciones_info_listas WHERE nombre_usuario = $1 AND id_lista = 1',[req.user.email],
 					function(err,result)
 					{
 						if (err) throw err;
 						res.send({canciones :result.rows,tp : tipo});
 					})
 				break;
+            case "lista2":
+                console.log(req.user.email);
+                pool.query('SELECT * FROM Todas_canciones_info_listas WHERE nombre_usuario = $1 AND id_lista = 2',[req.user.email],
+                    function(err,result)
+                    {
+                        if (err) throw err;
+                        res.send({canciones :result.rows,tp : tipo});
+                    })
+                break;
+            case "lista3":
+                console.log(req.user.email);
+                pool.query('SELECT * FROM Todas_canciones_info_listas WHERE nombre_usuario = $1 AND id_lista = 3',[req.user.email],
+                    function(err,result)
+                    {
+                        if (err) throw err;
+                        res.send({canciones :result.rows,tp : tipo});
+                    })
+                break;
 
         }
 
