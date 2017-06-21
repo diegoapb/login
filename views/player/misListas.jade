@@ -33,4 +33,4 @@ block content
               td
                 form(action='http://localhost:3000/player/delete/#{list.id_lista}?_method=delete' method='post')
                   button.btn.btn-link(type='submit') delete
-                a.btn.btn.link(href='#') editar
+                a.btn.btn.link(href='http://localhost:3000/player/misListas/editarLista/#{list.id_lista}') editar

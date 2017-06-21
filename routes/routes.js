@@ -46,6 +46,15 @@ router.get('/player/miListas/crearLista',controllers.PlayerController.getcrearLi
 
 router.post('/player/misListas/crearLista',controllers.PlayerController.postcrearLista);
 
+router.get('/player/misListas/editarLista/:id_lista',controllers.PlayerController.getEditarLista);
+router.put('/player/misListas/editarLista/:id_lista',controllers.PlayerController.putEditarLista);
+
+router.delete('/player/misListas/editarLista/delete/:id_lista/:id_cancion',controllers.PlayerController.deleteCancionLista);
+
+router.get('/pasarParam/:param1/:param2',function (req,res,next) {
+	console.log(req.params.param1);
+    console.log(req.params.param2);
+});
 
 
 module.exports = router;

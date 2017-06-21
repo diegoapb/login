@@ -3,6 +3,8 @@
 extends ../templates/default
 block content
   p Player Exlore
+  if isAuthenticated
+    p= 'Bienvenido ' + user.nombre
 
   div(class='row')
     div(class='col-md-3 col-md-offset-1')
@@ -37,6 +39,14 @@ block content
               td=cancion.nombre_genero
               td
                 a.btn.btn-link(href='/'+cancion.ruta) escuchar
-                a.btn.btn-link(href='#') agregar a mi lista
+                .btn-group
+                  button.btn.btn-link.dropdown-toggle(type='button', data-toggle='dropdown')
+                    | agregar a lista
+                    span.caret
+                  ul.dropdown-menu(role='menu')
+                    each lista in listas
+                      li
+                        a.btn.btn-link(href='#' type='button')=lista.nombre_lista
+
   script(src="/javascripts/play.js")
 

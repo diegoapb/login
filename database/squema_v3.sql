@@ -103,6 +103,10 @@ CREATE VIEW Todas_listas AS
 SELECT *
 FROM lista;
 
+CREATE SEQUENCE cancion_lista_seq;
+ALTER TABLE cancion_lista ADD COLUMN seq integer unique default nextval('cancion_lista_seq');
+
+
 CREATE OR REPLACE VIEW Todas_listas AS
 SELECT id_lista,nombre_lista,likes,nombre_usuario
 FROM lista INNER JOIN usuario
@@ -118,7 +122,7 @@ INNER JOIN cancion
 ON cancion_lista.fk_id_cancion = cancion.id_cancion;
 
 CREATE OR REPLACE VIEW Todas_canciones_info_listas AS
-SELECT id_cancion,nombre_cancion,duracion,nombre_artista,nombre_genero,nombre_lista,nombre_usuario,ruta,id_lista
+SELECT id_cancion,nombre_cancion,duracion,nombre_artista,nombre_genero,nombre_lista,nombre_usuario,ruta,id_lista,seq
 FROM lista INNER JOIN usuario
 ON lista.fk_id_usuario = usuario.id_usuario
 INNER JOIN cancion_lista
