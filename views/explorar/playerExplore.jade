@@ -10,7 +10,7 @@ block content
         div(class='panel-body')
           h1 PlayerMusicExplore
           audio(controls='')
-            source(type='audio/mpeg')
+            source(src='/musica/cancion1.mp3' type='audio/mpeg')
     div(class='col-md-7 col-md-offset-0')
       p Lista de todas las canciones
 
@@ -21,14 +21,16 @@ block content
           th Duracion
           th Arista
           th Genero
-          th Lista
+          th acciones
         tbody
           each cancion in canciones
-            tr(onclick='probandoEscucha()')
+            tr
               td=cancion.nombre_cancion
               td=cancion.duracion
               td=cancion.nombre_artista
               td=cancion.nombre_genero
-              td cdcd
+              td
+                a.btn.btn-link(href='/'+cancion.ruta) escuchar
+                a.btn.btn-link(href='#') agregar a mi lista
   script(src="/javascripts/play.js")
 

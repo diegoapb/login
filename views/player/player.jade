@@ -23,9 +23,11 @@ block content
               span.caret
             ul.dropdown-menu(role='menu')
               li
-                a(href='#') lista1
+                button.btn.btn-link(type='button' id='lista1') Lista 1
               li
-                a(href='#') lista2
+                button.btn.btn-link(type='button' id='lista2') Lista 2
+              li
+                button.btn.btn-link(type='button' id='lista3') Lista 3
 
 
 
@@ -38,11 +40,15 @@ block content
             th Nombre
             th Duracion
             th Arista
+            th Genero
+            th Lista
           tbody
           tr
             td John
             td Doe
             td john@example.com
+            td gay
+            td lista
 
 
   script(src='javascripts/main.js')

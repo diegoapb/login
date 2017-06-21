@@ -109,7 +109,7 @@ FROM lista INNER JOIN usuario
 ON lista.fk_id_usuario = usuario.id_usuario;
 
 CREATE OR REPLACE VIEW Todas_canciones_listas AS
-SELECT id_cancion,nombre_cancion,duracion,nombre_lista,likes,nombre_usuario
+SELECT id_cancion,nombre_cancion,duracion,nombre_lista,likes,nombre_usuario,id_lista
 FROM lista INNER JOIN usuario
 ON lista.fk_id_usuario = usuario.id_usuario
 INNER JOIN cancion_lista
@@ -118,7 +118,7 @@ INNER JOIN cancion
 ON cancion_lista.fk_id_cancion = cancion.id_cancion;
 
 CREATE OR REPLACE VIEW Todas_canciones_info_listas AS
-SELECT id_cancion,nombre_cancion,duracion,nombre_lista,nombre_usuario
+SELECT id_cancion,nombre_cancion,duracion,nombre_artista,nombre_genero,nombre_lista,nombre_usuario,ruta,id_lista
 FROM lista INNER JOIN usuario
 ON lista.fk_id_usuario = usuario.id_usuario
 INNER JOIN cancion_lista
@@ -127,5 +127,12 @@ INNER JOIN cancion
 ON cancion_lista.fk_id_cancion = cancion.id_cancion
 INNER JOIN artista
 ON artista.id_artista=cancion.fk_id_artista
+INNER JOIN genero
+ON cancion.fk_id_genero = genero.id_genero;
+
+CREATE OR REPLACE VIEW all_music AS
+SELECT *
+FROM cancion INNER JOIN artista
+ON cancion.fk_id_artista = artista.id_artista
 INNER JOIN genero
 ON cancion.fk_id_genero = genero.id_genero;

@@ -12,7 +12,7 @@ block content
             source(type='audio/mpeg')
     div(class='col-md-7 col-md-offset-0')
       p tabla con la informacion de las listas
-      a.btn.btn-primary(href='#' type='button' ) mostrar todas las canciones
+      a.btn.btn-primary(href='http://localhost:3000/explorar/explorePlayer/all' type='button' ) mostrar todas las canciones
       table.table.table-hover
         thead
           tr
@@ -27,8 +27,9 @@ block content
               td=list.likes
               td=list.nombre_usuario
               td
-                a(href='#') dar like
-                =' - '
                 a(href='#') escuchar
+                =' - '
+                form(action='http://localhost:3000/explorar/like/#{list.id_lista}?_method=put' method='post')
+                  button.btn.btn-link(type='submit') dar like
 
 

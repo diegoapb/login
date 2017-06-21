@@ -13,7 +13,12 @@ block content
             source(type='audio/mpeg')
     div(class='col-md-7 col-md-offset-0')
       p tabla con la informacion de las listas
-      a.btn.btn-primary(href='#' type='button' ) crear nueva lista
+      if listas.length < 3
+        a.btn.btn-primary(href='#' type='button' ) crear nueva lista
+      else
+        div(class='col-md-9 col-md-offset-4')
+          button.btn.btn-danger(type='button')
+            |debes de ser premium para tener mas de 3 listas
       table.table.table-hover
         thead
           tr
@@ -26,12 +31,6 @@ block content
               td=list.nombre_lista
               td=list.likes
               td
-                a(href='#') editar
-                =' - '
-                a(href='#') eliminar
-
-
-
-
-
-  script(src='javascripts/main.js')
+                form(action='http://localhost:3000/player/delete/#{list.id_lista}?_method=delete' method='post')
+                  button.btn.btn-link(type='submit') delete
+                a.btn.btn.link(href='#') editar

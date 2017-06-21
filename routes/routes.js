@@ -32,11 +32,15 @@ router.get('/player/play',controllers.PlayerController.playplm);
 router.get('/player/playpr',function(req,res,next){
 		mediaserver.pipe(req,res,'plm.mp3');
 	});
-
+router.put('/explorar/like/:id_lista',controllers.exploreController.like);
 router.get('/player/canciones/:tipo',controllers.PlayerController.getCanciones);
 //router.get('/player/:ruta',controllers.PlayerController.canNombre);
 
 router.get('/player/mislistas',controllers.PlayerController.getMisListas);
+
+router.delete('/player/delete/:id_lista',controllers.PlayerController.deleteLista);
+
+router.get('/explorar/explorePlayer/:id_lista',controllers.exploreController.explorePlayer);
 
 
 module.exports = router;

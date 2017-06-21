@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
 var routes = require('./routes/routes');
+var method_override = require("method-override");
 var passport = require ('passport');
 require('./passport/passport')(passport);
 
@@ -28,6 +29,7 @@ app.use(flash());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(method_override('_method'));
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
