@@ -12,7 +12,13 @@ block content
           audio(controls='')
             source(src='/musica/cancion1.mp3' type='audio/mpeg')
     div(class='col-md-7 col-md-offset-0')
-      p Lista de todas las canciones
+      if canciones.length < 1
+        p Esta lista esta vacia
+      else
+        if (canciones[1].nombre_lista=canciones[canciones.length-1].nombre_lista)
+          p='Esta es la lista de reproduccion '+canciones[1].nombre_lista+' del usuario '+canciones[1].nombre_usuario
+        else
+          p Estas viendo todas las canciones del servidor
 
       table.table.table-hover
         thead

@@ -42,5 +42,10 @@ router.delete('/player/delete/:id_lista',controllers.PlayerController.deleteList
 
 router.get('/explorar/explorePlayer/:id_lista',controllers.exploreController.explorePlayer);
 
+router.get('/player/miListas/crearLista',controllers.PlayerController.getcrearLista);
+
+router.post('/player/misListas/crearLista',controllers.PlayerController.postcrearLista);
+
+
 
 module.exports = router;

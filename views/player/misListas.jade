@@ -13,8 +13,8 @@ block content
             source(type='audio/mpeg')
     div(class='col-md-7 col-md-offset-0')
       p tabla con la informacion de las listas
-      if listas.length < 3
-        a.btn.btn-primary(href='#' type='button' ) crear nueva lista
+      if listas.length < 3 || user.premium
+          a.btn.btn-primary(href='http://localhost:3000/player/miListas/crearLista' type='button' ) crear nueva lista
       else
         div(class='col-md-9 col-md-offset-4')
           button.btn.btn-danger(type='button')

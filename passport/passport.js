@@ -44,7 +44,8 @@ module.exports = function(passport){
 						return done(null,{
 							id:user.id_usuario,
 							nombre:user.nombre_apellido,
-							email:user.nombre_usuario
+							email:user.nombre_usuario,
+							premium:user.premium
 						});
 					}
 				}

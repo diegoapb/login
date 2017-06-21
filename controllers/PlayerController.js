@@ -12,8 +12,7 @@ module.exports = {
         } else {
             res.redirect('/auth/signin')
         }
-    }
-	,
+    },
 
     getMisListas : function(req,res,next){
 		console.log(req.isAuthenticated());
@@ -123,11 +122,32 @@ module.exports = {
 		var cancion = path.join('music/',req.params.ruta);
 		console.log(cancion);
 		mediaserver.pipe(req,res,cancion);
-	}
+	},
 
+	getcrearLista : function (req, res, next) {
+        if (req.isAuthenticated()) {
+            res.render('player/crearLista', {
+                isAuthenticated: req.isAuthenticated(),
+                user: req.user
+            })
+        } else {
+            res.redirect('/auth/signin')
+        }
+	},
+    postcrearLista : function (req, res, next) {
+		var lista={
+			nombre_lista : req.body.nombreLista
+		};
+		console.log(req.user.id);
+		console.log(req.user.email);
+        var pool = require('.././database/config');
+        pool.query('insert into lista (nombre_lista,fk_id_usuario)values($1,$2)',
+            [lista.nombre_lista,req.user.id],
+            function(err,result){
+                if(err)throw err;
+            });
+        req.flash('info', 'Se ha registrado correctamente,ya puede iniciar sesion');
+        return res.redirect('/explorar/explorePlayer/all');
 
-
-
-
-	
+    }
 }

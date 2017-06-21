@@ -35,7 +35,9 @@ module.exports = {
     explorePlayer :function (req,res,next) {
         if(req.isAuthenticated){
            var pool = require('.././database/config');
-           if(req.param.id_lista='all'){
+           console.log(req.params.id_lista);
+            console.log(req.params.id_lista=="all");
+           if(req.params.id_lista=="all"){
                pool.query('SELECT * FROM all_music ORDER BY id_cancion',
                    function (err, result) {
                        if (err) throw err;
@@ -46,18 +48,18 @@ module.exports = {
                        })
                    })
            }else{
-
-           }/*
-           pool.query('SELECT * FROM Todas_listas ORDER BY id_lista',
-                function (err, result) {
-                    if (err) throw err;
-                    console.log(datos);
-                    res.render('explorar/explorar', {
-                        isAuthenticated: req.isAuthenticated(),
-                        user: req.user,
-                        listas: result.rows
-                    })
-                })*/
+               pool.query('SELECT * FROM todas_canciones_info_listas WHERE id_lista = $1',
+                   [req.params.id_lista],
+                   function (err, result) {
+                       if (err) throw err;
+                       console.log(result.rows);
+                       res.render('explorar/playerExplore', {
+                           isAuthenticated: req.isAuthenticated(),
+                           user: req.user,
+                           canciones: result.rows
+                       })
+                   })
+           }
         }else{res.redirect('/auth/signin')}
 
     }

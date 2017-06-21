@@ -27,8 +27,7 @@ block content
               td=list.likes
               td=list.nombre_usuario
               td
-                a(href='#') escuchar
-                =' - '
+                a.btn.btn-link(href='http://localhost:3000/explorar/explorePlayer/'+list.id_lista)=list.id_lista
                 form(action='http://localhost:3000/explorar/like/#{list.id_lista}?_method=put' method='post')
                   button.btn.btn-link(type='submit') dar like
 
